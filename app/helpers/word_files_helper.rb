@@ -1,0 +1,2 @@
+module WordFilesHelper
+end

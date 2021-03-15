@@ -1,0 +1,10 @@
+
+<% if params[:type] == "add-column" %>
+    $("#columns-div").append('<%= escape_javascript("#{render 'with_tr', name: "column"}").html_safe %>');
+    <% params[:index].to_i.times do |index| %>
+    $(".row-div[data-index='<%=index%>']").append('<%= escape_javascript("#{render 'with_tr', name: "row" , child_index: index }").html_safe%>'); 
+    <% end %>
+<% end %>
+<% if params[:type] == "add-row" %>
+    $("tbody").append('<%= escape_javascript("#{render 'add_row', name: "row" , child_index: params[:index],total: params[:total_row]}").html_safe %>');
+<% end %>

@@ -1,0 +1,5 @@
+<tr class="row-div" data-index="<%=child_index%>">
+    <% total.to_i.times do |index| %>
+        <%= render "with_tr" , name:name, child_index: child_index.to_i %>
+    <% end %>
+</tr>

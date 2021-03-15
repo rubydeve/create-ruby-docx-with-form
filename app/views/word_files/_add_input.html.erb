@@ -1,0 +1,5 @@
+<% if defined?(child_index) %>
+    <%= text_field_tag "#{name}[#{child_index}][]" ,'', class: "form-control border-0" ,data:{index: child_index}%>
+<% else %>
+    <%= text_field_tag "#{name}[]" ,'', class: "form-control border-0"%>
+<% end %>

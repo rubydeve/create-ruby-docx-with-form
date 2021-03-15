@@ -1,0 +1,7 @@
+<th scope="col">
+<% if defined?(child_index) %>
+    <%= render "add_input" , name: name, child_index: child_index%>
+<% else %>
+    <%= render "add_input" , name: name %>
+<% end %>
+</th>

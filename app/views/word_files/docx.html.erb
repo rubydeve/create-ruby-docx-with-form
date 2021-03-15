@@ -1,0 +1,64 @@
+
+<div class="row text-">
+    <div class="col-md-12 text-end mb-3">
+        <button type="button" class="btn btn-success" style="margin-right: 5px;" id="add-column">Add Columns</a>
+        <button type="button" class="btn btn-success">Add Remove Columns</button>
+        <button type="submit" class="btn btn-success" form="formsave">Download</button>
+    </div>
+    <div class="table-responsive">
+        <%= form_tag docx_post_word_files_url, multipart: true ,id:"formsave" do %>
+            <div class="col-6">
+                <div class="form-group">
+                    <label for="exampleInputEmail1">Nom</label>
+                    <input type="text" class="form-control" name="nom" id="exampleInputEmail1">
+                </div>
+                <div class="form-group mt-3 mb-3">
+                    <label for="exampleFormControlFile1">Logo Photo</label>
+                    <input type="file" name="logo" class="form-control-file" id="exampleFormControlFile1">
+                </div>
+            </div>
+
+            <table class="table table-bordered">
+                <thead>
+                    <tr id="columns-div">
+                        <% 3.times do |index| %>
+                            <%= render "with_tr" , name: "column"%>
+                        <% end %>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="row-div" data-index="0">
+                        <% 3.times do |index| %>
+                            <%= render "with_tr" , name: "row", child_index: 0%>
+                        <% end %>
+                    </tr>
+                </tbody>
+            </table>
+        <% end %>
+    </div>
+    <div class="col-md-12 text-end mt-3">
+        <button type="button" class="btn btn-success" id="add-row">Add Row</button>
+        <button type="button" class="btn btn-success">Add Remove Row</button>
+    </div>
+
+</div>
+
+ <script type="text/javascript">
+    $('#add-column').click(function() {
+        // row last index we have
+        rewards_tier_index = $(".row-div").last().data("index") + 1;
+        $.ajax({
+            url: "<%= new_word_file_url %>",
+            // type: "GET",
+            data: { type: "add-column",index: rewards_tier_index ,total_row:  $(".row-div").last().find("input").length}
+        })
+    });
+     $('#add-row').click(function() {
+        rewards_tier_index = $(".row-div").last().data("index") + 1;
+        $.ajax({
+            url: "<%= new_word_file_url %>",
+            // type: "GET",
+            data: { type: "add-row" , index: rewards_tier_index ,total_row:  $(".row-div").last().find("input").length}
+        })
+    });
+</script>
